@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full selection:bg-fuchsia-500/30 selection:text-fuchsia-200">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValdeLuca 🚀 El Oráculo Financiero ValdeLoza</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Plus Jakarta Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Definición de variables para la transición dinámica de temas */
+        :root {
+            --bg-color: #020617; /* Slate 950 */
+            --radial-1: rgba(99, 102, 241, 0.08);
+            --radial-2: rgba(217, 70, 239, 0.08);
+            --glass-bg: rgba(15, 23, 42, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --text-title: #ffffff;
+            --text-body: #cbd5e1; /* slate 300 */
+            --text-muted: #94a3b8; /* slate 400 */
+            --input-bg: #020617;
+            --input-border: #1e293b; /* slate 800 */
+            --table-header-bg: rgba(2, 6, 23, 0.4);
+            --border-muted: rgba(30, 41, 59, 0.6);
+            --badge-bg: rgba(99, 102, 241, 0.1);
+            --badge-text: #a5b4fc;
+        }
+
+        .theme-light {
+            --bg-color: #f8fafc; /* Slate 50 */
+            --radial-1: rgba(99, 102, 241, 0.05);
+            --radial-2: rgba(217, 70, 239, 0.04);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(99, 102, 241, 0.12);
+            --text-title: #0f172a; /* slate 900 */
+            --text-body: #334155; /* slate 700 */
+            --text-muted: #64748b; /* slate 500 */
+            --input-bg: #ffffff;
+            --input-border: #cbd5e1; /* slate 300 */
+            --table-header-bg: rgba(241, 245, 249, 0.8);
+            --border-muted: #e2e8f0; /* slate 200 */
+            --badge-bg: rgba(99, 102, 241, 0.08);
+            --badge-text: #4f46e5;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--radial-1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, var(--radial-2) 0%, transparent 40%);
+            color: var(--text-body);
+            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Clases de utilidad dinámicas basadas en variables */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            transition: background 0.4s ease, border-color 0.4s ease, shadow 0.4s ease;
+        }
+        
+        .text-theme-title { color: var(--text-title); transition: color 0.4s ease; }
+        .text-theme-body { color: var(--text-body); transition: color 0.4s ease; }
+        .text-theme-muted { color: var(--text-muted); transition: color 0.4s ease; }
+        .bg-theme-input { background-color: var(--input-bg); transition: background-color 0.4s ease; }
+        .border-theme-input { border-color: var(--input-border); transition: border-color 0.4s ease; }
+        .border-theme-muted { border-color: var(--border-muted); transition: border-color 0.4s ease; }
+        .bg-theme-table-header { background-color: var(--table-header-bg); transition: background-color 0.4s ease; }
+        .bg-theme-badge { background-color: var(--badge-bg); color: var(--badge-text); transition: all 0.4s ease; }
+
+        /* Brillos sutiles neón */
+        .glow-indigo {
+            filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.35));
+        }
+        .glow-fuchsia {
+            filter: drop-shadow(0 0 15px rgba(217, 70, 239, 0.35));
+        }
+        .glow-emerald {
+            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.35));
+        }
+
+        /* Barra de navegación personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.15);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.3);
+        }
+
+        .status-transition {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-theme-muted bg-slate-950/20 backdrop-blur-md sticky top-0 z-10 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative group">
+                        <!-- Neon radial blur background -->
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 via-purple-600 to-fuchsia-500 rounded-2xl blur opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative bg-slate-900 text-white p-3 rounded-2xl flex items-center justify-center">
+                            <!-- Premium wallet icon -->
+                            <svg class="w-6 h-6 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11a13.916 13.916 0 00-3.136-8.438l-.053-.09m10.19 14.881l.054-.09A13.916 13.916 0 0015 11a13.916 13.916 0 00-3.136-8.438l-.053-.09M15 11h.01V11H15zm-3 0h.01V11H12zm-3 0h.01V11H9zm12 0c0 3.517-1.009 6.799-2.753 9.571a1 1 0 11-1.742-1.054 11.916 11.916 0 001.637-6.22C16.142 6.517 14.172 3 12 3S7.858 6.517 7.858 11.293a11.916 11.916 0 001.637 6.22a1 1 0 01-1.742 1.054C5.009 17.799 4 14.517 4 11s1.009-6.799 2.753-9.571m10.494 0l.053-.09A13.916 13.916 0 0015 11"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-extrabold tracking-tight text-theme-title">
+                            Valde<span class="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-500 bg-clip-text text-transparent">Luca 🚀</span>
+                        </h1>
+                        <p class="text-xs text-indigo-500 font-bold tracking-widest uppercase">Operación Colchón 🛡️ & Abundancia ValdeLoza</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <!-- Indicador de estado de la conexión en la nube -->
+                    <div class="hidden sm:flex items-center space-x-2 bg-slate-900/40 border border-theme-input rounded-xl px-3.5 py-1.5">
+                        <span id="sync-dot" class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span id="sync-status-text" class="text-[9px] font-extrabold tracking-widest uppercase text-slate-400">Conectando...</span>
+                    </div>
+
+                    <!-- Selector de Meses Activos (Se poblará dinámicamente) -->
+                    <div class="flex items-center space-x-1 bg-slate-900/40 border border-theme-input rounded-xl p-1 text-xs">
+                        <select id="month-selector" onchange="handleMonthChange(this.value)" class="bg-transparent text-theme-title font-bold focus:outline-none px-2 py-1 cursor-pointer">
+                            <!-- Opciones construidas dinámicamente -->
+                        </select>
+                    </div>
+
+                    <!-- Botón Regulador de Brillo -->
+                    <button onclick="toggleTheme()" id="theme-toggle-btn" class="p-2.5 rounded-xl border border-theme-input bg-theme-input text-theme-title hover:scale-105 active:scale-95 transition-all shadow-sm flex items-center justify-center" title="Ajustar brillo del tablero">
+                        <svg id="sun-icon" class="w-5 h-5 text-amber-400 hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 2.293a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zm4 4.707a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM11 16a1 1 0 112 0v1a1 1 0 11-2 0v-1zm-4.293-2.293a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM4 10a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm.293-4.293a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zM10 5a5 5 0 100 10 5 5 0 000-10z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg id="moon-icon" class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Toast Area -->
+        <div id="toast" class="hidden fixed bottom-6 right-6 bg-slate-900 border border-fuchsia-500/30 text-white px-5 py-4 rounded-2xl shadow-[0_0_25px_rgba(217,70,239,0.15)] flex items-center space-x-3 transition-all duration-300 transform translate-y-10 opacity-0 z-50">
+            <span class="w-2.5 h-2.5 rounded-full bg-fuchsia-500 animate-ping"></span>
+            <span id="toast-message" class="text-sm font-semibold tracking-wide">Acción realizada con éxito</span>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+            
+            <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group hover:border-slate-400/20 transition-all duration-300">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/15 transition-all"></div>
+                <span class="text-[10px] font-bold text-theme-muted uppercase tracking-widest block mb-1">Total Planificado</span>
+                <h3 id="stat-total" class="text-3xl font-extrabold text-theme-title mt-1 tracking-tight">$0.00</h3>
+                <div class="mt-4 flex items-center text-xs text-indigo-500 font-semibold">
+                    <span class="bg-indigo-500/10 px-2.5 py-1 rounded-lg border border-indigo-500/20">100% obligaciones</span>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group hover:border-slate-400/20 transition-all duration-300">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/15 transition-all"></div>
+                <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-widest block mb-1">Monto Pagado</span>
+                <h3 id="stat-paid" class="text-3xl font-extrabold text-emerald-500 mt-1 tracking-tight glow-emerald">$0.00</h3>
+                <div class="mt-4 flex items-center text-xs text-emerald-500 font-semibold self-start">
+                    <span id="stat-paid-count" class="bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        0 ítems listos
+                    </span>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group hover:border-slate-400/20 transition-all duration-300">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-fuchsia-500/10 rounded-full blur-2xl group-hover:bg-fuchsia-500/15 transition-all"></div>
+                <span class="text-[10px] font-bold text-fuchsia-500 uppercase tracking-widest block mb-1">Monto Pendiente</span>
+                <h3 id="stat-pending" class="text-3xl font-extrabold text-theme-title mt-1 tracking-tight glow-fuchsia">$0.00</h3>
+                <div class="mt-4 flex items-center text-xs text-fuchsia-500 font-semibold self-start">
+                    <span id="stat-pending-count" class="bg-fuchsia-500/10 px-2.5 py-1 rounded-lg border border-fuchsia-500/20 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-pulse"></span>
+                        0 por pagar
+                    </span>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-3xl relative overflow-hidden group hover:border-slate-400/20 transition-all duration-300">
+                <div class="absolute -right-10 -top-10 w-24 h-24 bg-violet-500/10 rounded-full blur-2xl group-hover:bg-violet-500/15 transition-all"></div>
+                <span class="text-[10px] font-bold text-violet-500 uppercase tracking-widest block mb-1">Progreso Financiero</span>
+                <div class="flex items-baseline space-x-1 mt-1">
+                    <h3 id="stat-percentage" class="text-3xl font-extrabold text-theme-title">0%</h3>
+                    <span class="text-theme-muted text-[10px] font-bold uppercase tracking-wider">Completado</span>
+                </div>
+                <div class="mt-5">
+                    <div class="w-full bg-slate-900/10 rounded-full h-3 p-0.5 border border-theme-muted">
+                        <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 h-1.5 rounded-full transition-all duration-700 ease-out shadow-[0_0_8px_rgba(99,102,241,0.5)]" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dynamic Workspace Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Panel: Form & Actions -->
+            <div class="space-y-6">
+                
+                <!-- Quick Add Expense Form -->
+                <div class="glass-panel p-6 rounded-3xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500"></div>
+                    <h2 class="text-md font-extrabold text-theme-title mb-6 flex items-center">
+                        <span class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2 rounded-xl mr-3 shadow-lg shadow-indigo-500/10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                            </svg>
+                        </span>
+                        Añadir Compromiso
+                    </h2>
+                    
+                    <form id="expense-form" class="space-y-5" onsubmit="handleAddExpense(event)">
+                        <div>
+                            <label for="exp-name" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Nombre de la obligación</label>
+                            <input type="text" id="exp-name" required placeholder="Ej: Pago de Hipoteca o Supermercado..." class="w-full bg-theme-input border border-theme-input rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 text-sm text-theme-title placeholder:text-slate-500 transition-all">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="exp-amount" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Monto ($)</label>
+                                <input type="number" id="exp-amount" step="0.01" required placeholder="0.00" class="w-full bg-theme-input border border-theme-input rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 text-sm text-theme-title placeholder:text-slate-500 transition-all">
+                            </div>
+                            <div>
+                                <label for="exp-category" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Categoría</label>
+                                <select id="exp-category" class="w-full bg-theme-input border border-theme-input rounded-xl px-3 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 text-sm text-theme-title transition-all">
+                                    <option value="Esenciales">🎯 Esenciales</option>
+                                    <option value="Transporte">🚗 Transporte</option>
+                                    <option value="Deudas">💸 Deudas</option>
+                                    <option value="Recompensas">🎁 Recompensas</option>
+                                    <option value="Gastos puntuales">⚡ Gastos puntuales</option>
+                                    <option value="Ahorro e inversión">📈 Ahorro e inversión</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="exp-duedate" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Vencimiento</label>
+                                <input type="date" id="exp-duedate" required class="w-full bg-theme-input border border-theme-input rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 text-sm text-theme-title transition-all">
+                            </div>
+                            <div>
+                                <label for="exp-status" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Estado Inicial</label>
+                                <select id="exp-status" class="w-full bg-theme-input border border-theme-input rounded-xl px-3 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 text-sm text-theme-title transition-all">
+                                    <option value="pendiente">⏳ Pendiente</option>
+                                    <option value="pagado">🟢 Pagado</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="exp-notes" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Notas / Métodos (Opcional)</label>
+                            <input type="text" id="exp-notes" placeholder="Ej: Cuenta de ahorro o débito automático..." class="w-full bg-theme-input border border-theme-input rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 text-sm text-theme-title placeholder:text-slate-500 transition-all">
+                        </div>
+
+                        <button type="submit" class="w-full relative group overflow-hidden bg-gradient-to-r from-indigo-500 via-purple-600 to-fuchsia-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40">
+                            <span class="relative z-10 flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                Guardar Obligación
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Reset / Preset Tools & Retrospective -->
+                <div class="glass-panel p-5 rounded-3xl border border-theme-input flex flex-col space-y-3">
+                    <span class="text-[10px] font-bold text-theme-muted uppercase tracking-widest">Planificación Familiar</span>
+                    
+                    <!-- Botón para Iniciar un Nuevo Mes de Forma Proactiva -->
+                    <button onclick="openNewMonthModal()" class="w-full py-2.5 bg-gradient-to-r from-emerald-500/10 to-indigo-500/10 hover:from-emerald-500/20 hover:to-indigo-500/20 text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                        Comenzar Nuevo Mes 🆕
+                    </button>
+
+                    <button onclick="archiveCurrentMonth()" class="w-full py-2 bg-gradient-to-r from-fuchsia-500/10 to-indigo-500/10 hover:from-fuchsia-500/20 hover:to-indigo-500/20 text-fuchsia-400 hover:text-fuchsia-300 border border-fuchsia-500/30 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                        Cerrar y Archivar Mes
+                    </button>
+
+                    <div class="flex space-x-3 pt-1">
+                        <button onclick="loadDemoData()" class="flex-1 px-3 py-2 bg-slate-900/10 hover:bg-slate-900/20 text-indigo-300 hover:text-indigo-400 border border-theme-input rounded-xl text-[10px] font-bold transition-all">
+                            Restaurar Junio
+                        </button>
+                        <button onclick="clearAllExpenses()" class="flex-1 px-3 py-2 bg-rose-500/5 hover:bg-rose-500/10 text-rose-500 hover:text-rose-600 border border-rose-500/20 rounded-xl text-[10px] font-bold transition-all">
+                            Limpiar Todo
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Panel: Interactive Table and Filters -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- Retrospective Historial Log (Sección de meses cerrados) -->
+                <div id="retro-panel" class="glass-panel p-5 rounded-3xl hidden">
+                    <h3 class="text-xs font-extrabold text-theme-title uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span>📚</span> Registro de Retrospectivas Archivadas
+                    </h3>
+                    <div id="retro-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <!-- Items de retrospectiva irán aquí -->
+                    </div>
+                </div>
+
+                <!-- Filters Bar -->
+                <div class="glass-panel p-4 rounded-3xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xs font-bold text-theme-muted uppercase tracking-widest">Vista:</span>
+                        <div class="inline-flex rounded-xl bg-theme-input p-1 border border-theme-input">
+                            <button onclick="setFilter('todos')" id="filter-todos" class="px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-gradient-to-r from-indigo-500/10 to-fuchsia-500/10 text-indigo-500 border border-indigo-500/20 shadow-sm">Todos</button>
+                            <button onclick="setFilter('pendiente')" id="filter-pendiente" class="px-3 py-1.5 text-xs font-medium text-theme-muted rounded-lg hover:text-theme-title transition-all">Pendientes</button>
+                            <button onclick="setFilter('pagado')" id="filter-pagado" class="px-3 py-1.5 text-xs font-medium text-theme-muted rounded-lg hover:text-theme-title transition-all">Pagados</button>
+                        </div>
+                    </div>
+                    
+                    <div class="relative flex-grow sm:max-w-xs">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </span>
+                        <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Buscar compromiso..." class="w-full bg-theme-input pl-10 pr-4 py-2 border border-theme-input rounded-xl text-xs text-theme-title placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+                    </div>
+                </div>
+
+                <!-- Expenses List -->
+                <div class="glass-panel rounded-3xl overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-theme-table-header border-b border-theme-input text-theme-muted uppercase text-[9px] font-bold tracking-widest">
+                                    <th class="py-4 px-6 w-16 text-center">Estado</th>
+                                    <th class="py-4 px-4">Descripción / Categoría</th>
+                                    <th class="py-4 px-4 text-center">Vence</th>
+                                    <th class="py-4 px-4 text-right">Monto</th>
+                                    <th class="py-4 px-6 text-right"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="expenses-table-body" class="divide-y divide-theme-input text-sm">
+                                <!-- Dynamic rows go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div id="empty-state" class="hidden flex flex-col items-center justify-center py-20 px-6 text-center">
+                        <div class="bg-gradient-to-br from-indigo-500/5 to-fuchsia-500/5 border border-indigo-500/10 p-5 rounded-full text-slate-500 mb-4 animate-pulse">
+                            <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.24.588 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.18 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118L2.49 10.1c-.773-.57-.375-1.81.587-1.81H7.99a1 1 0 00.95-.69l1.519-4.674z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-extrabold text-theme-title text-base">Nada pendiente por aquí</h3>
+                        <p class="text-xs text-theme-muted mt-2 max-w-sm leading-relaxed">Todo listo o sin obligaciones que coincidan. ¡Sigue controlando tus finanzas de manera estelar!</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Modal para iniciar un nuevo mes de forma interactiva (Glassmorphic) -->
+    <div id="new-month-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div onclick="closeNewMonthModal()" class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative glass-panel rounded-3xl w-full max-w-md overflow-hidden p-6 shadow-2xl border border-indigo-500/30">
+            <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-emerald-500 via-teal-500 to-indigo-500"></div>
+            
+            <h3 class="text-lg font-extrabold text-theme-title flex items-center gap-2 mb-4">
+                <span>🆕</span> Comenzar Nuevo Mes
+            </h3>
+            
+            <p class="text-xs text-theme-muted mb-5 leading-relaxed">
+                Selecciona el año y el mes que deseas comenzar a planificar. Puedes importar automáticamente las obligaciones recurrentes del mes actual.
+            </p>
+            
+            <form id="new-month-form" onsubmit="handleCreateNewMonth(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="new-month-year" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Año</label>
+                        <select id="new-month-year" class="w-full bg-theme-input border border-theme-input rounded-xl px-3 py-2.5 text-xs text-theme-title focus:outline-none focus:ring-2 focus:ring-emerald-500/50">
+                            <option value="2026">2026</option>
+                            <option value="2027" selected>2027</option>
+                            <option value="2028">2028</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="new-month-period" class="block text-[10px] font-bold text-theme-muted uppercase tracking-widest mb-1.5">Mes</label>
+                        <select id="new-month-period" class="w-full bg-theme-input border border-theme-input rounded-xl px-3 py-2.5 text-xs text-theme-title focus:outline-none focus:ring-2 focus:ring-emerald-500/50">
+                            <option value="01">Enero</option>
+                            <option value="02">Febrero</option>
+                            <option value="03">Marzo</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Mayo</option>
+                            <option value="06">Junio</option>
+                            <option value="07">Julio</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-slate-900/30 border border-slate-800 rounded-xl flex items-start gap-3">
+                    <input type="checkbox" id="new-month-copy-recurrent" checked class="mt-1 accent-emerald-500 h-4 w-4 rounded border-slate-800 bg-slate-900 text-emerald-500 focus:ring-emerald-500/50 focus:ring-offset-slate-950">
+                    <div>
+                        <label for="new-month-copy-recurrent" class="block text-xs font-bold text-theme-title cursor-pointer">Duplicar gastos fijos</label>
+                        <span class="text-[10px] text-theme-muted block mt-0.5">Arrastra tus gastos fijos recurrentes (categorías 🎯 Esenciales y 💸 Deudas) del mes en curso como pendientes.</span>
+                    </div>
+                </div>
+
+                <div class="flex space-x-3 pt-4 border-t border-theme-input">
+                    <button type="button" onclick="closeNewMonthModal()" class="flex-1 py-2.5 bg-slate-900/10 hover:bg-slate-900/20 text-theme-title border border-theme-input rounded-xl text-xs font-bold transition-all">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="flex-1 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl text-xs transition-all hover:shadow-lg hover:shadow-emerald-500/20">
+                        Crear e Iniciar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-theme-input bg-slate-950/10 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-theme-muted font-bold tracking-widest uppercase">
+            Claro &bull; Visual &bull; Financiero &copy; 2026
+        </div>
+    </footer>
+
+    <!-- Script Application Logic -->
+    <script type="module">
+        // Import Firebase modules for real-time cloud collaboration
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global Variables provided by platform context if running on server
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+
+        // Core State
+        let expenses = [];
+        let historicalRetros = [];
+        let currentFilter = 'todos';
+        let searchQuery = '';
+        let currentTheme = 'dark';
+        let isCloudActive = false;
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        
+        // Month State Management
+        let selectedMonthKey = "2026-06"; // Default June 2026
+
+        // List of default months to guarantee in selector
+        const defaultMonths = ["2026-06", "2026-07", "2026-08", "2026-09", "2026-10", "2026-11", "2026-12"];
+
+        // Custom Category metadata
+        const categoryMeta = {
+            'Esenciales': { icon: '🎯', bg: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-300 border border-emerald-500/20' },
+            'Transporte': { icon: '🚗', bg: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 border border-cyan-500/20' },
+            'Deudas': { icon: '💸', bg: 'bg-rose-500/10 text-rose-500 dark:text-rose-300 border border-rose-500/20' },
+            'Recompensas': { icon: '🎁', bg: 'bg-amber-500/10 text-amber-500 dark:text-amber-300 border border-amber-500/20' },
+            'Gastos puntuales': { icon: '⚡', bg: 'bg-violet-500/10 text-violet-600 dark:text-violet-300 border border-violet-500/20' },
+            'Ahorro e inversión': { icon: '📈', bg: 'bg-fuchsia-500/10 text-fuchsia-500 dark:text-fuchsia-300 border border-fuchsia-500/20' },
+            'Otros': { icon: '📦', bg: 'bg-slate-500/10 text-slate-600 dark:text-slate-300 border border-slate-500/20' }
+        };
+
+        // ADJUSTED DEMO EXPENSES: Replaced Esenciales items with exactly: Arriendo ($2.702.000), Educación ($680.000) and Luz y gas ($125.000)
+        const demoExpenses = [
+            { id: "1", name: "Arriendo", amount: 2702000, category: "Esenciales", dueDate: "2026-06-05", status: "pendiente", notes: "Aporte principal vivienda", month: "2026-06" },
+            { id: "2", name: "Educación", amount: 680000, category: "Esenciales", dueDate: "2026-06-10", status: "pendiente", notes: "Colegio / Universidad", month: "2026-06" },
+            { id: "3", name: "Luz y gas", amount: 125000, category: "Esenciales", dueDate: "2026-06-14", status: "pendiente", notes: "Servicios públicos", month: "2026-06" },
+            { id: "4", name: "Seguro de Vehículo (Auto)", amount: 110000, category: "Transporte", dueDate: "2026-06-20", status: "pendiente", notes: "Cargo automático mensual", month: "2026-06" },
+            { id: "5", name: "Placa Dental (Odontología)", amount: 750000, category: "Gastos puntuales", dueDate: "2026-06-15", status: "pendiente", notes: "Cita médica programada", month: "2026-06" },
+            { id: "6", name: "Seguridad Social (L. & N.)", amount: 998200, category: "Gastos puntuales", dueDate: "2026-06-03", status: "pagado", notes: "Aporte obligatorio", month: "2026-06" },
+            { id: "7", name: "Ahorro Colchón de Emergencia", amount: 2190000, category: "Ahorro e inversión", dueDate: "2026-06-30", status: "pendiente", notes: "Meta: Colchón $18M", month: "2026-06" },
+            { id: "8", name: "Inversión Tyba", amount: 1170000, category: "Ahorro e inversión", dueDate: "2026-06-28", status: "pendiente", notes: "Fondo de Inversión", month: "2026-06" },
+            { id: "9", name: "Maquillaje (Luisa)", amount: 150000, category: "Gastos puntuales", dueDate: "2026-06-10", status: "pagado", notes: "Gasto de cuidado personal", month: "2026-06" },
+            { id: "10", name: "Plantas de Oficina", amount: 42000, category: "Gastos puntuales", dueDate: "2026-06-11", status: "pagado", notes: "Decoración", month: "2026-06" },
+            { id: "11", name: "Tarjeta de Crédito Cupo", amount: 180000, category: "Deudas", dueDate: "2026-06-12", status: "pendiente", notes: "Pago cuotas", month: "2026-06" },
+            { id: "12", name: "Suscripción Cine & Streaming", amount: 14990, category: "Recompensas", dueDate: "2026-06-01", status: "pagado", notes: "Cobro recurrente", month: "2026-06" }
+        ];
+
+        // Format Helpers
+        function formatCurrency(val) {
+            return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 }).format(val);
+        }
+
+        function formatDate(dateStr) {
+            if(!dateStr) return '';
+            const options = { day: 'numeric', month: 'short' };
+            const date = new Date(dateStr + 'T00:00:00');
+            return date.toLocaleDateString('es-ES', options);
+        }
+
+        // Rebuild and sort month selector dynamically
+        function rebuildMonthSelector() {
+            const selector = document.getElementById('month-selector');
+            if (!selector) return;
+            const currentSelected = selectedMonthKey;
+
+            // Gather all custom months created in the expenses list
+            const activeExpensesMonths = expenses.map(e => e.month).filter(Boolean);
+            const activeHistoricalMonths = historicalRetros.map(r => r.monthKey).filter(Boolean);
+
+            // Deduplicate lists and combine with our baseline list + the currently selected one
+            const combinedMonths = Array.from(new Set([
+                currentSelected,
+                ...defaultMonths, 
+                ...activeExpensesMonths, 
+                ...activeHistoricalMonths
+            ]));
+
+            // Sort Chronologically
+            combinedMonths.sort((a, b) => a.localeCompare(b));
+
+            selector.innerHTML = '';
+            combinedMonths.forEach(mKey => {
+                const opt = document.createElement('option');
+                opt.value = mKey;
+                opt.className = "bg-slate-950 text-white";
+                opt.innerText = getMonthNameLabel(mKey);
+                if (mKey === currentSelected) {
+                    opt.selected = true;
+                }
+                selector.appendChild(opt);
+            });
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            if (body.classList.contains('theme-light')) {
+                body.classList.remove('theme-light');
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                currentTheme = 'dark';
+                showToast("Modo Noche activado 🌙");
+            } else {
+                body.classList.add('theme-light');
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                currentTheme = 'light';
+                showToast("Modo Día activado ☀️");
+            }
+            localStorage.setItem('monthly_expenses_theme', currentTheme);
+            renderList();
+        }
+
+        // Initialize App & Firebase Cloud Connection
+        window.addEventListener('load', async () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('exp-duedate').value = today;
+
+            // Load Theme Preferences
+            const savedTheme = localStorage.getItem('monthly_expenses_theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('theme-light');
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+                document.getElementById('sun-icon').classList.remove('hidden');
+                document.getElementById('moon-icon').classList.add('hidden');
+                currentTheme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+
+            // Attempt Cloud Sync connection (Firebase)
+            if (firebaseConfig) {
+                try {
+                    const app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+
+                    onAuthStateChanged(auth, (u) => {
+                        currentUser = u;
+                        if (u) {
+                            isCloudActive = true;
+                            updateSyncStatusIndicator('online');
+                            setupCloudSyncListener();
+                            setupRetroSyncListener();
+                        } else {
+                            isCloudActive = false;
+                            updateSyncStatusIndicator('local');
+                        }
+                    });
+
+                    // Rule 3: Authentication before any query
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+
+                } catch (e) {
+                    console.error("No se pudo iniciar la conexión de nube, usando modo local:", e);
+                    fallbackToLocalStorage();
+                }
+            } else {
+                fallbackToLocalStorage();
+            }
+        });
+
+        // Configuración de sincronización en la nube (Rule 1 & Rule 2)
+        function setupCloudSyncListener() {
+            if (!currentUser) return; // Strict Guard (Rule 3)
+
+            // Ruta pública estricta y correcta de base de datos compartida (Rule 1)
+            const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'expenses');
+
+            // Suscripción en tiempo real sin consultas complejas que requieran índices (Rule 2)
+            onSnapshot(collectionRef, (snapshot) => {
+                expenses = [];
+                snapshot.forEach(docSnapshot => {
+                    expenses.push({ id: docSnapshot.id, ...docSnapshot.data() });
+                });
+                rebuildMonthSelector();
+                updateUI();
+            }, (error) => {
+                console.error("Error en sincronización en tiempo real de gastos:", error);
+                fallbackToLocalStorage();
+            });
+        }
+
+        // Configuración de sincronización del histórico de retrospectivas
+        function setupRetroSyncListener() {
+            if (!currentUser) return;
+            const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'retrospectives');
+
+            onSnapshot(collectionRef, (snapshot) => {
+                historicalRetros = [];
+                snapshot.forEach(docSnapshot => {
+                    historicalRetros.push({ id: docSnapshot.id, ...docSnapshot.data() });
+                });
+                rebuildMonthSelector();
+                renderRetrospectives();
+            }, (error) => {
+                console.error("Error cargando retrospectivas:", error);
+            });
+        }
+
+        function fallbackToLocalStorage() {
+            isCloudActive = false;
+            updateSyncStatusIndicator('local');
+            
+            // Cargar gastos locales
+            const saved = localStorage.getItem('monthly_expenses_tracker_premium');
+            if (saved) {
+                try {
+                    expenses = JSON.parse(saved);
+                } catch(e) {
+                    expenses = [...demoExpenses];
+                }
+            } else {
+                expenses = [...demoExpenses];
+            }
+
+            // Cargar retrospectivas locales
+            const savedRetros = localStorage.getItem('monthly_expenses_retrospectives');
+            if (savedRetros) {
+                try {
+                    historicalRetros = JSON.parse(savedRetros);
+                } catch(e) {
+                    historicalRetros = [];
+                }
+            } else {
+                historicalRetros = [];
+            }
+
+            rebuildMonthSelector();
+            updateUI();
+            renderRetrospectives();
+        }
+
+        function updateSyncStatusIndicator(status) {
+            const dot = document.getElementById('sync-dot');
+            const text = document.getElementById('sync-status-text');
+            const container = dot ? dot.parentElement : null;
+
+            if (container) {
+                container.classList.remove('hidden');
+            }
+
+            if (dot && text) {
+                if (status === 'online') {
+                    dot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+                    text.innerText = "Sincronizado";
+                    text.className = "text-[9px] font-extrabold tracking-widest uppercase text-emerald-400";
+                } else {
+                    dot.className = "w-2 h-2 rounded-full bg-amber-500";
+                    text.innerText = "Modo Local";
+                    text.className = "text-[9px] font-extrabold tracking-widest uppercase text-amber-500";
+                }
+            }
+        }
+
+        // Cambiar el mes seleccionado desde la cabecera
+        function handleMonthChange(value) {
+            selectedMonthKey = value;
+            showToast(`Viendo datos de: ${getMonthNameLabel(value)}`);
+            updateUI();
+        }
+
+        function getMonthNameLabel(key) {
+            const map = {
+                "01": "Enero", "02": "Febrero", "03": "Marzo", "04": "Abril", "05": "Mayo", "06": "Junio",
+                "07": "Julio", "08": "Agosto", "09": "Septiembre", "10": "Octubre", "11": "Noviembre", "12": "Diciembre"
+            };
+            if (key.includes('-')) {
+                const parts = key.split('-');
+                const monthName = map[parts[1]] || parts[1];
+                return `${monthName} ${parts[0]}`;
+            }
+            return key;
+        }
+
+        // Modales interactivos para comenzar nuevo mes
+        function openNewMonthModal() {
+            const modal = document.getElementById('new-month-modal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        // Cierre de modal de forma segura
+        function closeNewMonthModal() {
+            const modal = document.getElementById('new-month-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        // Procesamiento e inserción del nuevo mes
+        async function handleCreateNewMonth(e) {
+            e.preventDefault();
+            const year = document.getElementById('new-month-year').value;
+            const month = document.getElementById('new-month-period').value;
+            const newKey = `${year}-${month}`;
+            const copyRecurrent = document.getElementById('new-month-copy-recurrent').checked;
+
+            // Filtrar gastos fijos recurrentes (Esenciales y Deudas) del mes actualmente activo
+            const currentMonthExpenses = expenses.filter(ex => (ex.month || "2026-06") === selectedMonthKey);
+            const recurrentOnes = currentMonthExpenses.filter(ex => ex.category === 'Esenciales' || ex.category === 'Deudas');
+
+            if (copyRecurrent && recurrentOnes.length > 0) {
+                if (isCloudActive && db && currentUser) {
+                    try {
+                        const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'expenses');
+                        for (let rec of recurrentOnes) {
+                            await addDoc(collectionRef, {
+                                name: rec.name,
+                                amount: rec.amount,
+                                category: rec.category,
+                                dueDate: rec.dueDate.replace(selectedMonthKey, newKey),
+                                status: 'pendiente', // Arrastrar siempre como pendiente
+                                notes: rec.notes || "Arrastrado al nuevo mes",
+                                month: newKey
+                            });
+                        }
+                    } catch(err) {
+                        console.error("Error copiando gastos recurrentes en la nube:", err);
+                    }
+                } else {
+                    // Modo Local
+                    const duplicated = recurrentOnes.map(rec => ({
+                        id: Date.now().toString() + Math.random().toString(),
+                        name: rec.name,
+                        amount: rec.amount,
+                        category: rec.category,
+                        dueDate: rec.dueDate.replace(selectedMonthKey, newKey),
+                        status: 'pendiente',
+                        notes: rec.notes || "Arrastrado al nuevo mes",
+                        month: newKey
+                    }));
+                    expenses = [...expenses, ...duplicated];
+                    localStorage.setItem('monthly_expenses_tracker_premium', JSON.stringify(expenses));
+                }
+            }
+
+            // Cambiar de mes activo inmediatamente al mes que se acaba de crear
+            selectedMonthKey = newKey;
+            
+            // Forzar actualización del dropdown y UI
+            rebuildMonthSelector();
+            updateUI();
+            closeNewMonthModal();
+
+            showToast(`¡Mes de ${getMonthNameLabel(newKey)} iniciado correctamente! 🚀`);
+        }
+
+        // Función interactiva de Cierre y Retrospectiva de Mes
+        async function archiveCurrentMonth() {
+            // Calcular estadísticas del mes actual a archivar
+            const monthExpenses = expenses.filter(e => (e.month || "2026-06") === selectedMonthKey);
+            
+            if (monthExpenses.length === 0) {
+                showToast("No hay registros en el mes activo para cerrar.");
+                return;
+            }
+
+            let total = 0;
+            let paid = 0;
+            monthExpenses.forEach(exp => {
+                const amount = parseFloat(exp.amount) || 0;
+                total += amount;
+                if(exp.status === 'pagado') {
+                    paid += amount;
+                }
+            });
+
+            const percent = total > 0 ? Math.round((paid / total) * 100) : 0;
+            
+            const retroData = {
+                monthKey: selectedMonthKey,
+                monthLabel: getMonthNameLabel(selectedMonthKey),
+                totalPlanificado: total,
+                totalPagado: paid,
+                porcentajeExito: percent,
+                cerradoEl: new Date().toLocaleDateString('es-ES'),
+                itemCount: monthExpenses.length
+            };
+
+            // 1. Guardar retrospectiva
+            if (isCloudActive && db && currentUser) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'retrospectives', selectedMonthKey);
+                    await setDoc(docRef, retroData);
+                } catch(err) {
+                    console.error("Error guardando retrospectiva:", err);
+                }
+            } else {
+                // Modo local
+                historicalRetros = historicalRetros.filter(r => r.monthKey !== selectedMonthKey);
+                historicalRetros.push(retroData);
+                localStorage.setItem('monthly_expenses_retrospectives', JSON.stringify(historicalRetros));
+                renderRetrospectives();
+            }
+
+            showToast(`¡Mes de ${retroData.monthLabel} archivado con éxito! 🏆`);
+        }
+
+        // Renderizado del histórico de retrospectivas
+        function renderRetrospectives() {
+            const panel = document.getElementById('retro-panel');
+            const list = document.getElementById('retro-list');
+            if (!panel || !list) return;
+            list.innerHTML = '';
+
+            if (historicalRetros.length === 0) {
+                panel.classList.add('hidden');
+                return;
+            }
+
+            panel.classList.remove('hidden');
+            
+            // Ordenar por clave de mes
+            historicalRetros.sort((a,b) => a.monthKey.localeCompare(b.monthKey));
+
+            historicalRetros.forEach(retro => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900/30 border border-slate-800 p-3.5 rounded-2xl flex flex-col justify-between";
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-extrabold text-theme-title">${retro.monthLabel}</span>
+                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">${retro.porcentajeExito}% Éxito</span>
+                    </div>
+                    <div class="space-y-1 mt-2 text-slate-400">
+                        <div class="flex justify-between">
+                            <span>Planificado:</span>
+                            <span class="font-semibold text-theme-title">${formatCurrency(retro.totalPlanificado)}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Pagado:</span>
+                            <span class="font-semibold text-emerald-400">${formatCurrency(retro.totalPagado)}</span>
+                        </div>
+                        <div class="flex justify-between text-[10px] text-slate-500 pt-1 border-t border-slate-900 mt-2">
+                            <span>${retro.itemCount} obligaciones</span>
+                            <span>Cerrado: ${retro.cerradoEl}</span>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        // Actions
+        async function handleAddExpense(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('exp-name').value;
+            const amount = parseFloat(document.getElementById('exp-amount').value);
+            const category = document.getElementById('exp-category').value;
+            const dueDate = document.getElementById('exp-duedate').value;
+            const status = document.getElementById('exp-status').value;
+            const notes = document.getElementById('exp-notes').value;
+
+            const newExpenseData = {
+                name,
+                amount,
+                category,
+                dueDate,
+                status,
+                notes,
+                month: selectedMonthKey, // Atado al mes activo seleccionado
+                createdAt: Date.now()
+            };
+
+            if (isCloudActive && db && currentUser) {
+                try {
+                    const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'expenses');
+                    await addDoc(collectionRef, newExpenseData);
+                    showToast("Registrado en la nube");
+                } catch(err) {
+                    console.error("Error guardando en la nube:", err);
+                    showToast("No se pudo subir, guardado localmente");
+                }
+            } else {
+                const newLocalExpense = { id: Date.now().toString(), ...newExpenseData };
+                expenses.push(newLocalExpense);
+                localStorage.setItem('monthly_expenses_tracker_premium', JSON.stringify(expenses));
+                updateUI();
+                showToast("Guardado localmente");
+            }
+            
+            // Reset Form fields except date
+            document.getElementById('exp-name').value = '';
+            document.getElementById('exp-amount').value = '';
+            document.getElementById('exp-notes').value = '';
+        }
+
+        async function toggleStatus(id) {
+            const exp = expenses.find(e => e.id === id);
+            if (!exp) return;
+
+            const newStatus = exp.status === 'pagado' ? 'pendiente' : 'pagado';
+
+            if (isCloudActive && db && currentUser) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'expenses', id);
+                    await updateDoc(docRef, { status: newStatus });
+                } catch (err) {
+                    console.error("Error actualizando en la nube:", err);
+                }
+            } else {
+                expenses = expenses.map(e => e.id === id ? { ...e, status: newStatus } : e);
+                localStorage.setItem('monthly_expenses_tracker_premium', JSON.stringify(expenses));
+                updateUI();
+            }
+            showToast("Estado de pago modificado");
+        }
+
+        async function deleteExpense(id) {
+            if (isCloudActive && db && currentUser) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'expenses', id);
+                    await deleteDoc(docRef);
+                } catch (err) {
+                    console.error("Error eliminando de la nube:", err);
+                }
+            } else {
+                expenses = expenses.filter(e => e.id !== id);
+                localStorage.setItem('monthly_expenses_tracker_premium', JSON.stringify(expenses));
+                updateUI();
+            }
+            showToast("Obligación eliminada");
+        }
+
+        async function loadDemoData() {
+            if (isCloudActive && db && currentUser) {
+                try {
+                    // Clean current active month expenses sequentially
+                    const activeMonthExpenses = expenses.filter(e => (e.month || "2026-06") === selectedMonthKey);
+                    for (let exp of activeMonthExpenses) {
+                        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'expenses', exp.id);
+                        await deleteDoc(docRef);
+                    }
+                    // Insert demo data forced into selected active month
+                    const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'expenses');
+                    for (let demo of demoExpenses) {
+                        const { id, ...data } = demo;
+                        data.month = selectedMonthKey; // Asegurar mes seleccionado
+                        data.dueDate = demo.dueDate.replace("2026-06", selectedMonthKey);
+                        await addDoc(collectionRef, data);
+                    }
+                    showToast("Datos de Distribución 2026 subidos");
+                } catch (err) {
+                    console.error("Error cargando demo en la nube:", err);
+                }
+            } else {
+                // Local
+                const activeMonthExpensesReset = demoExpenses.map(d => ({
+                    ...d,
+                    id: d.id + "_" + Date.now().toString(),
+                    month: selectedMonthKey,
+                    dueDate: d.dueDate.replace("2026-06", selectedMonthKey)
+                }));
+                // Eliminar los anteriores de este mes e insertar nuevos
+                expenses = expenses.filter(e => (e.month || "2026-06") !== selectedMonthKey);
+                expenses = [...expenses, ...activeMonthExpensesReset];
+                localStorage.setItem('monthly_expenses_tracker_premium', JSON.stringify(expenses));
+                updateUI();
+                showToast("Datos demo cargados para el mes seleccionado");
+            }
+        }
+
+        async function clearAllExpenses() {
+            if (isCloudActive && db && currentUser) {
+                try {
+                    const activeMonthExpenses = expenses.filter(e => (e.month || "2026-06") === selectedMonthKey);
+                    for (let exp of activeMonthExpenses) {
+                        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'expenses', exp.id);
+                        await deleteDoc(docRef);
+                    }
+                    showToast("Base de datos de este mes limpia");
+                } catch(err) {
+                    console.error("Error limpiando base en la nube:", err);
+                }
+            } else {
+                expenses = expenses.filter(e => (e.month || "2026-06") !== selectedMonthKey);
+                localStorage.setItem('monthly_expenses_tracker_premium', JSON.stringify(expenses));
+                updateUI();
+                showToast("Lista del mes actual limpia");
+            }
+        }
+
+        // Set Filter Click Handler
+        function setFilter(filter) {
+            currentFilter = filter;
+            ['todos', 'pendiente', 'pagado'].forEach(f => {
+                const btn = document.getElementById(`filter-${f}`);
+                if (btn) {
+                    if (f === filter) {
+                        btn.className = "px-3 py-1.5 text-xs font-bold rounded-lg transition-all bg-gradient-to-r from-indigo-500/10 to-fuchsia-500/10 text-indigo-500 border border-indigo-500/20 shadow-sm";
+                    } else {
+                        btn.className = "px-3 py-1.5 text-xs font-medium text-theme-muted rounded-lg hover:text-theme-title transition-all";
+                    }
+                }
+            });
+            renderList();
+        }
+
+        // Handle Search input
+        function handleSearch() {
+            const input = document.getElementById('search-input');
+            searchQuery = input ? input.value.toLowerCase().trim() : '';
+            renderList();
+        }
+
+        // Recalculate Stats & Progress
+        function updateUI() {
+            calculateStats();
+            renderList();
+        }
+
+        function calculateStats() {
+            let total = 0;
+            let paid = 0;
+            let pending = 0;
+            let paidCount = 0;
+            let pendingCount = 0;
+
+            // Filtrar exclusivamente por el mes seleccionado
+            const activeExpenses = expenses.filter(exp => (exp.month || "2026-06") === selectedMonthKey);
+
+            activeExpenses.forEach(exp => {
+                const amount = parseFloat(exp.amount) || 0;
+                total += amount;
+                if(exp.status === 'pagado') {
+                    paid += amount;
+                    paidCount++;
+                } else {
+                    pending += amount;
+                    pendingCount++;
+                }
+            });
+
+            const percent = total > 0 ? Math.round((paid / total) * 100) : 0;
+
+            // Update text Content
+            const elTotal = document.getElementById('stat-total');
+            const elPaid = document.getElementById('stat-paid');
+            const elPending = document.getElementById('stat-pending');
+            const elPaidCount = document.getElementById('stat-paid-count');
+            const elPendingCount = document.getElementById('stat-pending-count');
+            const elPercentage = document.getElementById('stat-percentage');
+            const elProgressBar = document.getElementById('progress-bar');
+
+            if (elTotal) elTotal.innerText = formatCurrency(total);
+            if (elPaid) elPaid.innerText = formatCurrency(paid);
+            if (elPending) elPending.innerText = formatCurrency(pending);
+            
+            if (elPaidCount) elPaidCount.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>${paidCount} listo${paidCount !== 1 ? 's' : ''}`;
+            if (elPendingCount) elPendingCount.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-pulse"></span>${pendingCount} pendiente${pendingCount !== 1 ? 's' : ''}`;
+            
+            if (elPercentage) elPercentage.innerText = `${percent}%`;
+            if (elProgressBar) elProgressBar.style.width = `${percent}%`;
+        }
+
+        function renderList() {
+            const tableBody = document.getElementById('expenses-table-body');
+            const emptyState = document.getElementById('empty-state');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+
+            // Filtrar por el mes seleccionado
+            let activeExpenses = expenses.filter(exp => (exp.month || "2026-06") === selectedMonthKey);
+
+            let filtered = activeExpenses.filter(exp => {
+                const matchesFilter = (currentFilter === 'todos') || (exp.status === currentFilter);
+                const matchesSearch = exp.name.toLowerCase().includes(searchQuery) || 
+                                      exp.category.toLowerCase().includes(searchQuery) ||
+                                      (exp.notes && exp.notes.toLowerCase().includes(searchQuery));
+                return matchesFilter && matchesSearch;
+            });
+
+            // Sort by Due Date ASC
+            filtered.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
+            if (filtered.length === 0) {
+                if (emptyState) emptyState.classList.remove('hidden');
+                return;
+            } else {
+                if (emptyState) emptyState.classList.add('hidden');
+            }
+
+            filtered.forEach(exp => {
+                const tr = document.createElement('tr');
+                tr.className = `group hover:bg-white/[0.02] transition-all duration-300 ${exp.status === 'pagado' ? 'opacity-50' : ''}`;
+                
+                const meta = categoryMeta[exp.category] || categoryMeta['Otros'];
+
+                // Render dynamic item
+                tr.innerHTML = `
+                    <!-- Column 1: Checkbox Toggle -->
+                    <td class="py-5 px-6 text-center">
+                        <div class="flex items-center justify-center">
+                            <button onclick="toggleStatus('${exp.id}')" class="focus:outline-none focus:ring-2 focus:ring-fuchsia-500/50 rounded-xl p-1.5 transition-all status-transition hover:bg-slate-900/10 ${exp.status === 'pagado' ? 'text-emerald-500 glow-emerald' : 'text-slate-400 dark:text-slate-600 hover:text-indigo-500'}">
+                                ${exp.status === 'pagado' ? `
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                ` : `
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <rect width="16" height="16" x="4" y="4" rx="4" stroke-width="2.5"/>
+                                    </svg>
+                                `}
+                            </button>
+                        </div>
+                    </td>
+
+                    <!-- Column 2: Name & Category -->
+                    <td class="py-5 px-4">
+                        <div class="flex items-center space-x-3.5">
+                            <span class="text-xl leading-none" title="${exp.category}">${meta.icon}</span>
+                            <div>
+                                <h4 class="font-bold text-theme-title tracking-wide text-sm ${exp.status === 'pagado' ? 'line-through opacity-50' : ''}">
+                                    ${exp.name}
+                                </h4>
+                                <div class="flex flex-wrap gap-2 mt-1.5 items-center">
+                                    <span class="px-2.5 py-0.5 text-[9px] font-extrabold tracking-widest uppercase rounded-md ${meta.bg}">
+                                        ${exp.category}
+                                    </span>
+                                    ${exp.notes ? `<span class="text-xs text-theme-muted font-medium italic">“${exp.notes}”</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <!-- Column 3: Due Date -->
+                    <td class="py-5 px-4 text-center whitespace-nowrap">
+                        <span class="text-xs font-bold ${exp.status === 'pagado' ? 'text-theme-muted opacity-50' : 'text-theme-title bg-slate-500/10 px-2.5 py-1 rounded-lg border border-theme-input'}">
+                            ${formatDate(exp.dueDate)}
+                        </span>
+                    </td>
+
+                    <!-- Column 4: Amount -->
+                    <td class="py-5 px-4 text-right font-bold text-sm whitespace-nowrap ${exp.status === 'pagado' ? 'text-theme-muted line-through opacity-50' : 'text-theme-title'}">
+                        ${formatCurrency(exp.amount)}
+                    </td>
+
+                    <!-- Column 5: Delete Actions -->
+                    <td class="py-5 px-6 text-right w-12">
+                        <button onclick="deleteExpense('${exp.id}')" class="text-theme-muted hover:text-rose-500 p-1.5 rounded-xl hover:bg-rose-500/10 opacity-0 group-hover:opacity-100 transition-all focus:opacity-100" title="Eliminar obligación">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </td>
+                `;
+
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // EXPOSE FUNCTIONS GLOBALLY: Exposing functions to the window object immediately on execution so that HTML event handlers don't throw ReferenceErrors
+        window.toggleTheme = toggleTheme;
+        window.setFilter = setFilter;
+        window.handleSearch = handleSearch;
+        window.handleAddExpense = handleAddExpense;
+        window.toggleStatus = toggleStatus;
+        window.deleteExpense = deleteExpense;
+        window.loadDemoData = loadDemoData;
+        window.clearAllExpenses = clearAllExpenses;
+        window.handleMonthChange = handleMonthChange;
+        window.archiveCurrentMonth = archiveCurrentMonth;
+        window.openNewMonthModal = openNewMonthModal;
+        window.closeNewMonthModal = closeNewMonthModal;
+        window.handleCreateNewMonth = handleCreateNewMonth;
+    </script>
+</body>
+</html>
